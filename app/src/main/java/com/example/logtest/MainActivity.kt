@@ -24,8 +24,9 @@ class MainActivity : AppCompatActivity() {
                         Log.i(TAG, "Connection established.")
                         val response = referrerClient.installReferrer
                         val referrerURl = response.installReferrer
-                        val result = ReferrerParser.parse(referrerURl)
-                        Log.i(TAG, result)
+                        ReferrerParser.parse(referrerURl)
+                        val result = ReferrerParser.map
+                        Log.i(TAG, result.toString())
                     }
                     InstallReferrerClient.InstallReferrerResponse.FEATURE_NOT_SUPPORTED -> {
                         Log.i(TAG, "API not available on the current Play Store app.")

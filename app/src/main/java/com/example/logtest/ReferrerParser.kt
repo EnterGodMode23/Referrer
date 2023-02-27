@@ -3,18 +3,15 @@ package com.example.logtest
 import android.net.Uri
 
 object ReferrerParser {
-    fun parse(link: String): String {
+    var map = mutableMapOf<String, String>()
+    fun parse(link: String): Map<String, String> {
         val str = Uri.parse(link).getQueryParameter("referrer")
-        val result: String
         if (str != null) {
-            val map = str.split("&").associate {
+            str.split("&").associateTo(map) {
                 val (left, right) = it.split("=")
                 left to right
             }
-            result = map.toString()
-        } else {
-            result = "Link is null"
         }
-        return result
+        return map
     }
 }
